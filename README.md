@@ -37,3 +37,4 @@ plt.title('Magnitude Spectrum')
 plt.tight_layout()
 plt.show()
 ```
+# Q2 ![image](https://github.com/nayan-ice/signal/assets/149757661/332eb4a4-e561-4870-9fbe-7953b1f80ef6)
