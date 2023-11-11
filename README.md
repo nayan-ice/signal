@@ -531,8 +531,92 @@ plt.show()
 
 
 
+# 7(b) plot zero and poles different different charts
+```ruby
+import numpy as np
+import matplotlib.pyplot as plt
+
+# System transfer function coefficients
+numerator = [10, 8, 4]
+denominator = [20, 18, 8, 2]
+
+# Calculate poles and zeros
+zeros = np.roots(numerator)
+poles = np.roots(denominator)
+
+# Plot zeros
+plt.figure(figsize=(12, 6))
+
+plt.subplot(1, 2, 1)
+plt.scatter(np.real(zeros), np.imag(zeros), marker='o', color='b')
+plt.title('Zeros')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
+
+# Plot poles
+plt.subplot(1, 2, 2)
+plt.scatter(np.real(poles), np.imag(poles), marker='x', color='r')
+plt.title('Poles')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
+
+plt.tight_layout()
+plt.show()
+
+# Display poles and zeros
+print('Zeros:', zeros)
+print('Poles:', poles)
 
 
+```
+# 7a   plot zero and poles different different charts
+```ruby
+import numpy as np
+import matplotlib.pyplot as plt
+
+# System transfer function coefficients
+numerator = [1, 0, 0, 1]
+denominator = [1, 2, 1, 0]
+
+# Calculate poles and zeros
+zeros = np.roots(numerator)
+poles = np.roots(denominator)
+
+# Plot Zeros
+plt.figure(figsize=(8, 4))
+plt.scatter(np.real(zeros), np.imag(zeros), marker='o', color='b', label='Zeros')
+plt.title('Zeros Plot')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
+plt.legend()
+plt.show()
+
+# Plot Poles
+plt.figure(figsize=(8, 4))
+plt.scatter(np.real(poles), np.imag(poles), marker='x', color='r', label='Poles')
+plt.title('Poles Plot')
+plt.xlabel('Real')
+plt.ylabel('Imaginary')
+plt.axhline(0, color='black', linewidth=0.5)
+plt.axvline(0, color='black', linewidth=0.5)
+plt.grid(color='gray', linestyle='--', linewidth=0.5)
+plt.legend()
+plt.show()
+
+# Display poles and zeros
+print('Zeros:', zeros)
+print('Poles:', poles)
+
+```
 
 
 
