@@ -449,7 +449,85 @@ plt.show()
 
 
 ```
+# Q9 ![image](https://github.com/nayan-ice/signal/assets/149757661/ebf7024e-8358-42b0-8ad3-944c1e89e581)
+```ruby
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import firwin, freqz
 
+# Filter specifications
+M = 61  # Filter length
+fs = 1.0  # Sampling frequency
+
+# Passband edge frequency
+fp = 0.1
+
+# Calculate filter parameters
+nyquist = 0.5 * fs
+cutoff_frequency = fp / nyquist
+
+# Design the lowpass filter using firwin
+taps = firwin(M, cutoff_frequency, fs=fs, window='hamming')
+
+# Frequency response of the filter
+frequency_response = freqz(taps, worN=8000, fs=fs)
+
+# Plot the frequency response
+plt.figure(figsize=(10, 6))
+plt.plot(0.5 * fs * frequency_response[0] / np.pi, np.abs(frequency_response[1]), 'b-', label='Filter response')
+plt.title('Lowpass Filter Frequency Response')
+plt.xlabel('Frequency [Hz]')
+plt.ylabel('Gain')
+plt.grid()
+plt.show()
+
+
+```
+
+# Q10 ![image](https://github.com/nayan-ice/signal/assets/149757661/d4b83d49-d34e-464e-8d40-689e90817a60)
+
+```ruby
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import butter, lfilter, freqz
+
+# Step 1: Create the signal
+fs = 100  # Sampling rate
+t = np.arange(0, 1, 1/fs)  # Time vector
+s = np.sin(2 * np.pi * 5 * t) + np.sin(2 * np.pi * 15 * t) + np.sin(2 * np.pi * 30 * t)
+
+# Plot the original signal
+plt.figure(figsize=(10, 4))
+plt.plot(t, s)
+plt.title('Original Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.grid()
+plt.show()
+
+# Step 2: Design an IIR filter
+def butter_bandstop_filter(data, lowcut, highcut, fs, order=4):
+    nyquist = 0.5 * fs
+    low = lowcut / nyquist
+    high = highcut / nyquist
+    b, a = butter(order, [low, high], btype='bandstop')
+    y = lfilter(b, a, data)
+    return y
+
+# Step 3: Apply the IIR filter to suppress frequencies of 5 Hz and 30 Hz
+filtered_signal = butter_bandstop_filter(s, 5, 30, fs)
+
+# Plot the filtered signal
+plt.figure(figsize=(10, 4))
+plt.plot(t, filtered_signal)
+plt.title('Filtered Signal')
+plt.xlabel('Time [s]')
+plt.ylabel('Amplitude')
+plt.grid()
+plt.show()
+
+
+```
 
 
 
